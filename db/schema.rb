@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_25_204057) do
+ActiveRecord::Schema.define(version: 2019_05_25_211050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,8 +35,10 @@ ActiveRecord::Schema.define(version: 2019_05_25_204057) do
     t.bigint "unit_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["address_id"], name: "index_properties_on_address_id"
     t.index ["unit_id"], name: "index_properties_on_unit_id"
+    t.index ["user_id"], name: "index_properties_on_user_id"
   end
 
   create_table "units", force: :cascade do |t|
@@ -56,4 +58,5 @@ ActiveRecord::Schema.define(version: 2019_05_25_204057) do
 
   add_foreign_key "properties", "addresses"
   add_foreign_key "properties", "units"
+  add_foreign_key "properties", "users"
 end
