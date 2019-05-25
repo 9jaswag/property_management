@@ -2,6 +2,8 @@
 
 # Address model
 class Address < ApplicationRecord
+  has_one :property
+
   validates :street, presence: true
   validates :zipcode, presence: true
   validates :city, presence: true
