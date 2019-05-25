@@ -2,6 +2,9 @@
 
 # User model
 class User < ApplicationRecord
+  # encrypt password
+  has_secure_password
+
   has_many :properties
 
   validates :name, presence: true
