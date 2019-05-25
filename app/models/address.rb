@@ -7,4 +7,8 @@ class Address < ApplicationRecord
   validates :city, presence: true
   validates :state, presence: true
   validates :country, presence: true
+
+  def full_address
+    "#{street}, #{zipcode}, #{city}, #{state}, #{country}"
+  end
 end
