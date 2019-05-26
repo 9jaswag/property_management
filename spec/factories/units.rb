@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :unit do
-    type { 'Duplex' }
+    unit_type { 'Duplex' }
   end
 end

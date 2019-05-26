@@ -4,5 +4,5 @@
 class Unit < ApplicationRecord
   has_one :property
 
-  validates :type, presence: true
+  validates :unit_type, presence: true
 end
