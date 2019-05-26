@@ -46,7 +46,6 @@ RSpec.describe UsersController, type: :request do
 
   describe 'POST /login' do
     let!(:user) { create(:user) }
-    let(:headers) { valid_headers.except('Authorization') }
     let(:valid_credentials) do
       {
         email: user.email,
