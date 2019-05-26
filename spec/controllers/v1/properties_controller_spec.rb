@@ -101,21 +101,11 @@ RSpec.describe V1::PropertiesController, type: :request do
     end
   end
 
-  describe 'PATCH /properties/:id' do
+  describe 'DELETE /properties/:id' do
     context 'when request is valid' do
-      updated_attributes = {
-        property: {
-          unit_attributes: { unit_type: 'Condo' }
-        }
-      }.to_json
+      before { delete "/properties/#{property_id}", headers: headers }
 
-      before do
-        patch "/properties/#{property_id}",
-              params: updated_attributes,
-              headers: headers
-      end
-
-      it 'returns the requested property' do
+      it 'deletes the requested property' do
         expect(response).to have_http_status(204)
       end
     end
