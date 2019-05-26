@@ -7,16 +7,16 @@ module V1
 
     def index
       properties = current_user.properties
-      render json: properties, status: :ok
+      json_response properties
     end
 
     def create
       property = current_user.properties.create!(property_params)
-      render json: property, status: :created
+      json_response(property, :created)
     end
 
     def show
-      render json: @property, status: :ok
+      json_response @property
     end
 
     def update

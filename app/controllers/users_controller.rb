@@ -9,12 +9,12 @@ class UsersController < ApplicationController
     token = AuthenticateUser.new(user.email, user.password).call
     response = { message: 'Account created successfully', token: token }
 
-    render json: response, status: :created
+    json_response(response, :created)
   end
 
   def authenticate
     token = AuthenticateUser.new(auth_params[:email], auth_params[:password]).call
-    render json: { token: token }
+    json_response(token: token)
   end
 
   private
