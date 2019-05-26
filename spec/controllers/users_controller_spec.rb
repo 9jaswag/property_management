@@ -43,4 +43,37 @@ RSpec.describe UsersController, type: :request do
       end
     end
   end
+
+  describe 'POST /login' do
+    let!(:user) { create(:user) }
+    let(:headers) { valid_headers.except('Authorization') }
+    let(:valid_credentials) do
+      {
+        email: user.email,
+        password: user.password
+      }.to_json
+    end
+    let(:invalid_credentials) do
+      {
+        email: 'janedoe@email.com',
+        password: 'simplepass'
+      }.to_json
+    end
+
+    context 'When request is valid' do
+      before { post '/login', params: valid_credentials, headers: headers }
+
+      it 'returns an authentication token' do
+        expect(json_body['token']).not_to be_nil
+      end
+    end
+
+    context 'When request is invalid' do
+      before { post '/login', params: invalid_credentials, headers: headers }
+
+      it 'returns a failure message' do
+        expect(json_body['message']).to match(/Invalid credentials/)
+      end
+    end
+  end
 end
