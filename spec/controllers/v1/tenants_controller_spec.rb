@@ -34,6 +34,13 @@ RSpec.describe V1::TenantsController, type: :request do
         expect(json_body).to have_key('tenant')
         expect(json_body['tenant']['name']).to eq tenant.name
       end
+
+      it 'returns an error if tenant is already an occupant' do
+        post "/properties/#{property_2.id}/occupants/#{tenant.id}", headers: headers
+
+        expect(response).to have_http_status(422)
+        expect(json_body['message']).to match(/Validation failed: Property has already been taken/)
+      end
     end
   end
 
