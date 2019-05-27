@@ -4,10 +4,10 @@ require 'rails_helper'
 
 RSpec.describe Unit, type: :model do
   describe 'database index' do
-    it { is_expected.to have_db_index(:type) }
+    it { is_expected.to have_db_index(:unit_type) }
   end
 
   describe 'validations' do
-    it { is_expected.to validate_presence_of(:type) }
+    it { is_expected.to validate_presence_of(:unit_type) }
   end
 end

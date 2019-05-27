@@ -8,4 +8,7 @@ class Property < ApplicationRecord
 
   validates_associated :address
   validates_associated :unit
+
+  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :unit
 end
