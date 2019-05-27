@@ -21,14 +21,14 @@ RSpec.describe V1::PropertiesController, type: :request do
           country: 'Land of Fire'
         }
       }
-    }.to_json
+    }
   end
   let(:invalid_attributes) do
     {
       property: {
         unit_attributes: { unit_type: 'Duplex' }
       }
-    }.to_json
+    }
   end
 
   describe 'GET /properties' do
@@ -47,18 +47,18 @@ RSpec.describe V1::PropertiesController, type: :request do
 
   describe 'POST /properties' do
     context 'when request is valid' do
-      before { post '/properties', params: valid_attributes, headers: headers }
+      before { post '/properties', params: valid_attributes.to_json, headers: headers }
 
       it 'creates a new property' do
         expect(response).to have_http_status(201)
         expect(json_body['address']['street']).to eq(
-          JSON.parse(valid_attributes)['property']['address_attributes']['street']
+          valid_attributes[:property][:address_attributes][:street]
         )
       end
     end
 
     context 'when request is invalid' do
-      before { post '/properties', params: invalid_attributes, headers: headers }
+      before { post '/properties', params: invalid_attributes.to_json, headers: headers }
 
       it 'returns an error message' do
         expect(response).to have_http_status(422)

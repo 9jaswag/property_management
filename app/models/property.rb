@@ -6,6 +6,9 @@ class Property < ApplicationRecord
   belongs_to :unit
   belongs_to :user
 
+  has_many :occupants
+  has_many :tenants, through: :occupants
+
   validates_associated :address
   validates_associated :unit
 
